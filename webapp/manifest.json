@@ -1,0 +1,199 @@
+{
+  "_version": "1.59.0",
+  "sap.app": {
+    "id": "manageremployeeprofile",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:lrop",
+      "version": "1.13.6",
+      "toolsId": "58e4e141-4460-4161-a8de-67c3762c1db3"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata4/sap/zmvd_ui_employeeprofilemanager/srvd/sap/zmvd_ui_employeeprofilemanager/0001/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "annotation"
+          ],
+          "localUri": "localService/metadata.xml",
+          "odataVersion": "4.0"
+        }
+      },
+      "annotation": {
+        "type": "ODataAnnotation",
+        "uri": "annotations/annotation.xml",
+        "settings": {
+          "localUri": "annotations/annotation.xml"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "extends": {
+      "extensions": {
+        "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController#manageremployeeprofile::ProfileEntryManagerObjectPage": {
+            "controllerName": "manageremployeeprofile.controller.RTESectionExtend"
+          }
+        }
+      }
+    },
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.120.16",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ushell": {},
+        "sap.fe.templates": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "manageremployeeprofile.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      },
+      "@i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "uri": "i18n/i18n.properties"
+      }
+    },
+    "resources": {
+      "css": []
+    },
+    "routing": {
+      "config": {},
+      "routes": [
+        {
+          "pattern": ":?query:",
+          "name": "EmployeeProfileManagerList",
+          "target": "EmployeeProfileManagerList"
+        },
+        {
+          "pattern": "EmployeeProfileManager({key}):?query:",
+          "name": "EmployeeProfileManagerObjectPage",
+          "target": "EmployeeProfileManagerObjectPage"
+        },
+        {
+          "pattern": "EmployeeProfileManager({key})/_ProfileEntry({key2}):?query:",
+          "name": "ProfileEntryManagerObjectPage",
+          "target": "ProfileEntryManagerObjectPage"
+        }
+      ],
+      "targets": {
+        "EmployeeProfileManagerList": {
+          "type": "Component",
+          "id": "EmployeeProfileManagerList",
+          "name": "sap.fe.templates.ListReport",
+          "options": {
+            "settings": {
+              "contextPath": "/EmployeeProfileManager",
+              "variantManagement": "Page",
+              "navigation": {
+                "EmployeeProfileManager": {
+                  "detail": {
+                    "route": "EmployeeProfileManagerObjectPage"
+                  }
+                }
+              },
+              "controlConfiguration": {
+                "@com.sap.vocabularies.UI.v1.LineItem": {
+                  "tableSettings": {
+                    "type": "ResponsiveTable"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "EmployeeProfileManagerObjectPage": {
+          "type": "Component",
+          "id": "EmployeeProfileManagerObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "editableHeaderContent": false,
+              "contextPath": "/EmployeeProfileManager",
+              "navigation": {
+                "_ProfileEntry": {
+                  "detail": {
+                    "route": "ProfileEntryManagerObjectPage"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "ProfileEntryManagerObjectPage": {
+          "type": "Component",
+          "id": "ProfileEntryManagerObjectPage",
+          "name": "sap.fe.templates.ObjectPage",
+          "options": {
+            "settings": {
+              "content": {
+                "body": {
+                  "sections": {
+                    "RTESection": {
+                      "template": "manageremployeeprofile.fragment.RTESection",
+                      "title": "{i18n>RTESection}",
+                      "position": {
+                        "placement": "Before",
+                        "anchor": "Description"
+                      },
+                      "type": "XMLFragment"
+                    }
+                  }
+                }
+              },
+              "editableHeaderContent": false,
+              "contextPath": "/EmployeeProfileManager/_ProfileEntry"
+            }
+          }
+        }
+      }
+    }
+  },
+  "sap.fiori": {
+    "registrationIds": [],
+    "archeType": "transactional"
+  }
+}
