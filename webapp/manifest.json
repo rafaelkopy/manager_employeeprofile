@@ -56,6 +56,9 @@
     "extends": {
       "extensions": {
         "sap.ui.controllerExtensions": {
+          "sap.fe.templates.ObjectPage.ObjectPageController#manageremployeeprofile::EmployeeProfileManagerObjectPage": {
+            "controllerName": "manageremployeeprofile.controller.SkillSectionExtend"
+          },          
           "sap.fe.templates.ObjectPage.ObjectPageController#manageremployeeprofile::ProfileEntryManagerObjectPage": {
             "controllerName": "manageremployeeprofile.controller.RTESectionExtend"
           }
@@ -95,7 +98,14 @@
       "@i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "uri": "i18n/i18n.properties"
-      }
+      },
+      "skill": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+				  "operationMode": "Server"
+				}
+			}
     },
     "resources": {
       "css": []
@@ -151,6 +161,21 @@
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
+              "content": {
+                "body": {
+                  "sections": {
+                    "SkillSection": {
+                      "template": "manageremployeeprofile.fragment.SkillSection",
+                      "title": "{i18n>SkillSection}",
+                      "position": {
+                        "placement": "Before",
+                        "anchor": "SkillId"
+                      },
+                      "type": "XMLFragment"
+                    }
+                  }
+                }
+              },
               "editableHeaderContent": false,
               "contextPath": "/EmployeeProfileManager",
               "navigation": {
