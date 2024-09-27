@@ -7,7 +7,7 @@ sap.ui.define([
         _sectionPrefix: "fe::CustomSubSection::SkillSection--",
         override: {   
             onInit() { 
-                 this.getView().byId(this._sectionPrefix + "gridListId")           
+                 this.getView().byId(this._sectionPrefix + "gridListId")    
               }
             }      
           });

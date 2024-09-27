@@ -9,33 +9,33 @@
 		<f:GridList
 			id="gridListId"
 			headerText="{i18n>GridListHeader}"
-			items="{ path : 'skill>/EmployeeSkillManager' }">
+			items="{ path : '/EmployeeSkillManager' }" 
+      width="auto"       
+      >
 			<f:GridListItem id="gridListItemId">
 				<VBox id="vboxId" 
-                      class="sapUiSmallMargin"
+              class="sapUiResponsiveMargin"
+              width="auto"
                 >
 					<layoutData>
 						<FlexItemData id="flexItemDataId"
-                                      growFactor="1"
-                                      shrinkFactor="0"                        
+                          growFactor="1"
+                          shrinkFactor="0"                        
                         /> 
 					</layoutData>
 
 					    <Title id="titleId"
-                               text="{SkillName}"
+                               text="{Skillname}"
                                wrapping="true"
-                        />
-					        <Label id="labelId"
-                                   text="{Rating}" 
-                                   wrapping="true"
-                            />       
-                                <RatingIndicator id="ratingId"
-                                                 value="{Rating}"
-                                                 maxValue="10"
-                                                 visualMode="Half"
-					                             iconSize="18px"
-                                >
-				                </RatingIndicator>           
+                        />      
+                            <RatingIndicator id="ratingId"
+                                             value="{Rating}"
+                                             maxValue="10"
+                                             visualMode="Half"
+					                                   iconSize="16px"
+                                             editable="{= ${ui>/editMode} === 'Display' ? false : true }"
+                            >
+				                    </RatingIndicator>           
 				</VBox>
 			</f:GridListItem>
 		</f:GridList>
